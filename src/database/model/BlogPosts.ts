@@ -2,6 +2,7 @@ import { DATE, INTEGER, Model, STRING } from 'sequelize/types';
 
 // @ts-ignore
 import db from '.';
+import Users from './Users';
 
 class BlogPosts extends Model {}
 
@@ -19,5 +20,9 @@ BlogPosts.init(
     timestamps: false,
   },
 );
+
+BlogPosts.belongsTo(Users, {
+  foreignKey: 'userId', as: 'Users',
+});
 
 export default BlogPosts;

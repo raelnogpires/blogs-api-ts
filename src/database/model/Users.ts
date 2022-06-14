@@ -3,9 +3,11 @@ import { STRING, Model } from 'sequelize/types';
 // @ts-ignore
 import db from '.';
 
-class User extends Model {}
+import BlogPosts from './BlogPosts';
 
-User.init(
+class Users extends Model {}
+
+Users.init(
   {
     displayName: {
       type: STRING,
@@ -27,4 +29,6 @@ User.init(
   },
 );
 
-export default User;
+Users.hasMany(BlogPosts, { foreignKey: 'userId', as: 'BlogPosts' });
+
+export default Users;
