@@ -1,9 +1,8 @@
-import { INTEGER, Model } from 'sequelize/types';
+import { INTEGER, Model } from 'sequelize';
 
-// @ts-ignore
 import db from '.';
-import BlogPosts from './BlogPosts';
 
+import BlogPosts from './BlogPosts';
 import Categories from './Categories';
 
 class PostCategories extends Model {}

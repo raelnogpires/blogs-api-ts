@@ -1,7 +1,7 @@
-import { DATE, INTEGER, Model, STRING } from 'sequelize/types';
+import { DATE, INTEGER, Model, STRING } from 'sequelize';
 
-// @ts-ignore
 import db from '.';
+
 import Users from './Users';
 
 class BlogPosts extends Model {}

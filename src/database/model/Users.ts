@@ -1,6 +1,5 @@
-import { STRING, Model } from 'sequelize/types';
+import { Model, STRING } from 'sequelize';
 
-// @ts-ignore
 import db from '.';
 
 import BlogPosts from './BlogPosts';

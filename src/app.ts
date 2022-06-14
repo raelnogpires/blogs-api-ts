@@ -1,5 +1,9 @@
 import * as express from 'express';
 
+import userRouter from './routes/user.router';
+
+import errorMiddleware from './middlewares/error.middleware';
+
 export default class App {
   public app: express.Express;
 
@@ -32,5 +36,9 @@ export default class App {
     this.app.get('/', async (_req, res) => {
       return res.status(200).json({ message: `Everything's ok!` });
     });
+
+    this.app.use(userRouter);
+
+    this.app.use(errorMiddleware);
   }
 }

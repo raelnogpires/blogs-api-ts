@@ -1,4 +1,6 @@
-import { readFileSync } from 'fs';
+import { fstat, readFileSync } from 'fs';
+import 'dotenv/config';
+
 import * as jwt from 'jsonwebtoken';
 
 type JWTConfig = {
@@ -9,7 +11,7 @@ type JWTConfig = {
 
 const jwtConfig: JWTConfig = {
   // making sure that encoding is utf-8
-  secret: readFileSync('jwt.evaluation.key', 'utf-8'),
+  secret: readFileSync('jwt.key', 'utf8'),
   expiresIn: '2d',
   algorithm: 'HS256',
 };

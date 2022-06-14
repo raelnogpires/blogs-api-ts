@@ -1,6 +1,5 @@
-import { STRING, Model } from 'sequelize/types';
+import { STRING, Model } from 'sequelize';
 
-// @ts-ignore
 import db from '.';
 
 class Categories extends Model {}
