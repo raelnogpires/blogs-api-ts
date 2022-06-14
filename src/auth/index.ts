@@ -6,10 +6,12 @@ type TokenValidateData = {
   data: { email: string },
 }
 
-class AuthService {
-  constructor(
-    private _jswt = jwt,
-  ) {}
+export default class AuthService {
+  private _jswt;
+
+  constructor() {
+    this._jswt = jwt;
+  }
 
   public generate(email: string): string {
     const { secret, expiresIn, algorithm } = jwtConfig;
@@ -31,5 +33,3 @@ class AuthService {
     }
   }
 }
-
-export default AuthService;

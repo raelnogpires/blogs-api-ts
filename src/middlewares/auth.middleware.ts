@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { UnauthorizedError } from 'restify-errors';
-import AuthService from '../auth';
+import AuthService from '../auth/index';
 
 export default class AuthMiddleware {
   private _auth;
@@ -10,13 +10,14 @@ export default class AuthMiddleware {
   }
 
   public async validate(req: Request, _res: Response, next: NextFunction) {
-    const { authorization: token } = req.headers;
-    if (!token) {
+    const { authorization } = req.headers;
+
+    if (!authorization) {
       const err = new UnauthorizedError('Token not found');
       return next(err);
     }
 
-    const verify = this._auth.verify(token);
+    const verify = this._auth.verify(authorization);
     if (!verify) {
       const err = new UnauthorizedError('Expired or invalid token');
       return next(err);
