@@ -2,6 +2,10 @@ import * as jwt from 'jsonwebtoken';
 
 import jwtConfig from './config';
 
+type TokenValidateData = {
+  data: { email: string },
+}
+
 class AuthService {
   constructor(
     private _jswt = jwt,
@@ -15,17 +19,17 @@ class AuthService {
     return token;
   }
 
-  // public verify(token: string): TokenValidateData | null {
-  //   const { secret } = jwtConfig;
-  //   const decoded = this._jswt.verify(token, secret);
+  public verify(token: string): TokenValidateData | null {
+    const { secret } = jwtConfig;
+    const decoded = this._jswt.verify(token, secret);
 
-  //   // try/catch preventing 'jsonwebtoken mal formed' type of error
-  //   try {
-  //     return decoded as TokenValidateData;
-  //   } catch (error) {
-  //     return null;
-  //   }
-  // }
+    // try/catch preventing 'jsonwebtoken mal formed' type of error
+    try {
+      return decoded as TokenValidateData;
+    } catch (error) {
+      return null;
+    }
+  }
 }
 
 export default AuthService;
