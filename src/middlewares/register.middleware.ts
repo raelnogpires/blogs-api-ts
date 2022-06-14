@@ -13,7 +13,7 @@ export default class RegisterValidation {
     image: Joi.string().allow(''),
   });
 
-  public static validation(req: Request, res: Response, next: NextFunction) {
+  public static validation(req: Request, _res: Response, next: NextFunction) {
     const { error } = RegisterValidation.joi.validate(req.body);
 
     if (error) {
