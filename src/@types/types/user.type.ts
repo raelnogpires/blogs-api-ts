@@ -8,6 +8,8 @@ export type UserT = {
 
 export type NewUserT = Omit<UserT, 'id'>;
 
+export type UserLoginT = Pick<UserT, 'email' | 'password'>;
+
 export type NewUserReturnT = {
   id: number,
   displayName: string,
