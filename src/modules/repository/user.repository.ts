@@ -1,6 +1,6 @@
 import Users from '../../database/model/Users';
 
-import { NewUserT, UserLoginT } from '../../@types/types/user.type';
+import { AllUsersT, NewUserT, UserLoginT } from '../../@types/types/user.type';
 import IUserRepository from '../../@types/interfaces/user.repository.interface';
 
 export default class UserRepository implements IUserRepository {
@@ -30,5 +30,13 @@ export default class UserRepository implements IUserRepository {
     }
 
     return true;
+  }
+
+  public async getAllUsers(): Promise<AllUsersT[]> {
+    const users = await this._model.findAll({
+      attributes: { exclude: ['password'] },
+    });
+
+    return users;
   }
 }

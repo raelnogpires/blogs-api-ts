@@ -1,5 +1,5 @@
 import { BadRequestError, ConflictError } from 'restify-errors';
-import { NewUserT, UserLoginT, UserT } from '../../../@types/types/user.type';
+import { AllUsersT, NewUserT, UserLoginT, UserT } from '../../../@types/types/user.type';
 
 import UserRepository from '../../../modules/repository/user.repository';
 
@@ -23,5 +23,10 @@ export default class UserService {
     if (!u) {
       throw new BadRequestError('Invalid fields');
     }
+  }
+
+  public async getAllUsers(): Promise<AllUsersT[]> {
+    const users = await this._repository.getAllUsers();
+    return users;
   }
 }
