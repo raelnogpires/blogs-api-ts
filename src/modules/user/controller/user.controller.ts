@@ -44,4 +44,9 @@ export default class UserController {
       return next(error);
     }
   }
+
+  public async getAllUsers(_req: Request, res: Response): Promise<Response> {
+    const users = await this._service.getAllUsers();
+    return res.status(200).json(users);
+  }
 }
