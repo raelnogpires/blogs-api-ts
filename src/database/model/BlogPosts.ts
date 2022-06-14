@@ -2,9 +2,13 @@ import { DATE, INTEGER, Model, STRING } from 'sequelize';
 
 import db from '.';
 
-import Users from './Users';
-
-class BlogPosts extends Model {}
+class BlogPosts extends Model {
+  declare title: string;
+  declare content: string;
+  declare userId: number;
+  declare published: Date;
+  declare updated: Date;
+}
 
 BlogPosts.init(
   {
@@ -20,9 +24,5 @@ BlogPosts.init(
     timestamps: false,
   },
 );
-
-BlogPosts.belongsTo(Users, {
-  foreignKey: 'userId', as: 'Users',
-});
 
 export default BlogPosts;

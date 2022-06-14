@@ -4,7 +4,13 @@ import db from '.';
 
 import BlogPosts from './BlogPosts';
 
-class Users extends Model {}
+class Users extends Model {
+  declare id: number;
+  declare displayName: string;
+  declare email: string;
+  declare password: string;
+  declare image: string;
+}
 
 Users.init(
   {
@@ -28,6 +34,9 @@ Users.init(
   },
 );
 
-Users.hasMany(BlogPosts, { foreignKey: 'userId', as: 'BlogPosts' });
+Users.hasMany(BlogPosts, { foreignKey: 'userId' });
+
+// https://dev.to/jctaveras/sequelize-typescript-what-you-need-to-know-41mj
+BlogPosts.belongsTo(Users, { foreignKey: 'userId', as: 'Users' });
 
 export default Users;

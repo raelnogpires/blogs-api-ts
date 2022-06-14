@@ -37,7 +37,7 @@ export default class App {
       return res.status(200).json({ message: `Everything's ok!` });
     });
 
-    this.app.use(userRouter);
+    this.app.use('/user', userRouter);
 
     this.app.use(errorMiddleware);
   }
