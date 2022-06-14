@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
 import { UnauthorizedError } from 'restify-errors';
-import Users from '../database/model/Users';
 import AuthService from '../auth';
 
 export default class AuthMiddleware {

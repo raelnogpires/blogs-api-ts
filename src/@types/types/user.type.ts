@@ -17,3 +17,5 @@ export type NewUserReturnT = {
   password: string,
   image: string,
 }
+
+export type AllUsersT = Omit<UserT, 'password'>;
