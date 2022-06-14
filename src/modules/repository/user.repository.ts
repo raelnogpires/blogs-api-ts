@@ -1,6 +1,6 @@
 import Users from '../../database/model/Users';
 
-import { NewUserT } from '../../@types/types/user.type';
+import { NewUserT, UserT } from '../../@types/types/user.type';
 import IUserRepository from '../../@types/interfaces/user.repository.interface';
 
 export default class UserRepository implements IUserRepository {
@@ -17,6 +17,17 @@ export default class UserRepository implements IUserRepository {
     }
 
     await this._model.create(user);
+
+    return true;
+  }
+
+  public async userLogin(user: UserT): Promise<boolean> {
+    const { email, password } = user;
+
+    const exist = await this._model.findOne({ where: { email, password } });
+    if (!exist) {
+      return false;
+    }
 
     return true;
   }
