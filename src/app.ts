@@ -1,7 +1,8 @@
 import * as express from 'express';
 
-import userRouter from './routes/user.router';
-
+import registerRouter from './routes/register.router';
+import loginRouter from './routes/login.router';
+ 
 import errorMiddleware from './middlewares/error.middleware';
 
 export default class App {
@@ -37,7 +38,8 @@ export default class App {
       return res.status(200).json({ message: `Everything's ok!` });
     });
 
-    this.app.use('/user', userRouter);
+    this.app.use('/user', registerRouter);
+    this.app.use('/login', loginRouter);
 
     this.app.use(errorMiddleware);
   }

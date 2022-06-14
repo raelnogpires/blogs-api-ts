@@ -1,5 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
+
 import * as Joi from 'joi';
+
+import { BadRequestError } from 'restify-errors';
 
 export default class LoginValidation {
   private static joi = Joi.object({
@@ -11,7 +14,8 @@ export default class LoginValidation {
     const { error } = LoginValidation.joi.validate(req.body);
 
     if (error) {
-      return next(error);
+      const err = new BadRequestError(error.message);
+      return next(err);
     }
 
     return next();
