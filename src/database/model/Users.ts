@@ -28,8 +28,8 @@ Users.init(
     },
   },
   {
-    underscored: true,
     sequelize: db,
+    tableName: 'Users',
     timestamps: false,
   },
 );

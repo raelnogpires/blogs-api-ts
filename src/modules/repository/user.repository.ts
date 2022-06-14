@@ -11,8 +11,8 @@ export default class UserRepository implements IUserRepository {
   }
 
   public async registerUser(user: NewUserT): Promise<boolean> {
-    const exist = this._model.findOne({ where: { email: user.email } });
-    if (!exist) {
+    const exist = await this._model.findOne({ where: { email: user.email } });
+    if (exist) {
       return false;
     }
 

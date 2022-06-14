@@ -21,6 +21,7 @@ BlogPosts.init(
   {
     underscored: true,
     sequelize: db,
+    tableName: 'BlogPosts',
     timestamps: false,
   },
 );

@@ -19,6 +19,7 @@ PostCategories.init(
   {
     underscored: true,
     sequelize: db,
+    tableName: 'PostCategories',
     timestamps: false,
   },
 );

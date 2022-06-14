@@ -13,6 +13,7 @@ Categories.init(
   {
     underscored: true,
     sequelize: db,
+    tableName: 'Categories',
     timestamps: false,
   },
 );
