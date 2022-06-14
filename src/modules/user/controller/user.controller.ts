@@ -21,7 +21,25 @@ export default class UserController {
       await this._service.registerUser(req.body);
       const { email } = req.body;
       const token = this._auth.generate(email);
-      return res.status(201).json(token);
+      return res.status(201).json({ token });
+    } catch (error) {
+      return next(error);
+    }
+  }
+
+  public async userLogin(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> {
+    try {
+      await this._service.userLogin(req.body);
+
+      const { email } = req.body;
+      const token = this._auth.generate(email);
+      req.headers.authorization = token;
+
+      return res.status(200).json({ token });
     } catch (error) {
       return next(error);
     }
