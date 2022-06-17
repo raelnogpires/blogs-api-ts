@@ -2,7 +2,8 @@ import * as express from 'express';
 
 import userRouter from './routes/user.router';
 import loginRouter from './routes/login.router';
- 
+import categoryRouter from './routes/category.router';
+
 import errorMiddleware from './middlewares/error.middleware';
 
 export default class App {
@@ -40,6 +41,7 @@ export default class App {
 
     this.app.use('/user', userRouter);
     this.app.use('/login', loginRouter);
+    this.app.use('/categories', categoryRouter);
 
     this.app.use(errorMiddleware);
   }
