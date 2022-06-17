@@ -11,6 +11,7 @@ const auth = new AuthMiddleware();
 
 router
   .post('/', RegisterValidation.validation, (req, res, next) => controller.registerUser(req, res, next))
-  .get('/', auth.validateToken, (req, res) => controller.getAllUsers(req, res));
+  .get('/', auth.validateToken, (req, res) => controller.getAllUsers(req, res))
+  .get('/:id', auth.validateToken, (req, res, next) => controller.getUserById(req, res, next));
 
 export default router;
