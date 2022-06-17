@@ -12,7 +12,8 @@ export default class CategoryRepository implements ICategoryRepository {
   }
 
   public async createCategory(name: string): Promise<CategoryT> {
-    const newCategory = await this._model.create({ name });
+    const create = name as unknown as CategoryT;
+    const newCategory = await this._model.create(create);
     return newCategory;
   }
 }

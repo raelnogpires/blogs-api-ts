@@ -1,4 +1,4 @@
 export type CategoryT = {
-  id: number,
+  id?: number,
   name: string,
 }
