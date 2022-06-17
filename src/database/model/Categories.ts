@@ -1,10 +1,8 @@
 import { STRING, Model } from 'sequelize';
 
-import { CreateCategoryT } from '../../@types/types/category.type';
-
 import db from '.';
 
-class Categories extends Model<CreateCategoryT> {
+class Categories extends Model {
   declare id: number;
   declare name: string;
 }
