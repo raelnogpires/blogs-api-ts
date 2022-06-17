@@ -13,4 +13,9 @@ export default class CategoryService {
     const newCategory = await this._repository.createCategory(name);
     return newCategory;
   }
+
+  public async getAllCategories(): Promise<CategoryT[]> {
+    const categories = await this._repository.getAllCategories();
+    return categories;
+  }
 }

@@ -20,6 +20,14 @@ export default class CategoryController {
       return next(err);
     }
     const newCategory = await this._service.createCategory(req.body);
-    return res.status(200).json(newCategory);
+    return res.status(201).json(newCategory);
+  }
+
+  public async getAllCategories(
+    req: Request,
+    res: Response,
+  ): Promise<Response> {
+    const categories = await this._service.getAllCategories();
+    return res.status(200).json(categories);
   }
 }
