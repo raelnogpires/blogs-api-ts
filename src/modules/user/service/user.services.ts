@@ -1,5 +1,5 @@
 import { BadRequestError, ConflictError } from 'restify-errors';
-import { AllUsersT, NewUserT, UserLoginT, UserT } from '../../../@types/types/user.type';
+import { UserReturnT, NewUserT, UserLoginT, UserT } from '../../../@types/types/user.type';
 
 import UserRepository from '../../../modules/repository/user.repository';
 
@@ -25,7 +25,7 @@ export default class UserService {
     }
   }
 
-  public async getAllUsers(): Promise<AllUsersT[]> {
+  public async getAllUsers(): Promise<UserReturnT[]> {
     const users = await this._repository.getAllUsers();
     return users;
   }
