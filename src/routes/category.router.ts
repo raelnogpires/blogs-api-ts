@@ -9,6 +9,7 @@ const controller = new CategoryController();
 const auth = new AuthMiddleware();
 
 router
-  .post('/', auth.validateToken, (req, res, next) => controller.createCategory(req, res, next));
+  .post('/', auth.validateToken, (req, res, next) => controller.createCategory(req, res, next))
+  .get('/', auth.validateToken, (req, res) => controller.getAllCategories(req, res));
 
 export default router;
