@@ -6,30 +6,20 @@ type TokenValidateData = {
   data: { email: string },
 }
 
-export default class AuthService {
-  private _jswt;
+export const generateToken = (email: string): string => {
+  const { secret, expiresIn, algorithm } = jwtConfig;
 
-  constructor() {
-    this._jswt = jwt;
-  }
+  const token = jwt.sign({ email }, secret, { expiresIn, algorithm });
 
-  public generate(email: string): string {
-    const { secret, expiresIn, algorithm } = jwtConfig;
+  return token;
+};
 
-    const token = this._jswt.sign({ email }, secret, { expiresIn, algorithm });
-
-    return token;
-  }
-
-  public verify(token: string): TokenValidateData | null {
-    const { secret } = jwtConfig;
-    const decoded = this._jswt.verify(token, secret);
-
-    // try/catch preventing 'jsonwebtoken mal formed' type of error
-    try {
-      return decoded as TokenValidateData;
-    } catch (error) {
-      return null;
-    }
+export const verifyToken = (token: string): TokenValidateData | null => {
+  const { secret } = jwtConfig;
+  // try/catch preventing 'jsonwebtoken mal formed' type of error
+  try {
+    return jwt.verify(token, secret) as TokenValidateData;
+  } catch (error) {
+    return null;
   }
 }
