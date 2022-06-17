@@ -39,4 +39,9 @@ export default class UserRepository implements IUserRepository {
 
     return users;
   }
+
+  public async getUserById(id: number): Promise<UserReturnT | null> {
+    const user = await this._model.findByPk(id);
+    return user;
+  }
 }

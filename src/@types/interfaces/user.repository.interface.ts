@@ -4,5 +4,5 @@ export default interface IUserRepository {
   registerUser(user: NewUserT): Promise<boolean>,
   userLogin(user: UserLoginT): Promise<boolean>,
   getAllUsers(): Promise<UserReturnT[]>,
-  getUserById(id: number): Promise<UserReturnT>
+  getUserById(id: number): Promise<UserReturnT | null>
 }
