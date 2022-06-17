@@ -46,4 +46,20 @@ export default class UserController {
     const users = await this._service.getAllUsers();
     return res.status(200).json(users);
   }
+
+  public async getUserById(
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<Response | void> {
+    const { id } = req.params;
+    const nId = parseInt(id);
+
+    try {
+      const user = await this._service.getUserById(nId);
+      return res.status(200).json(user);
+    } catch (error) {
+      return next(error);
+    }
+  }
 }
