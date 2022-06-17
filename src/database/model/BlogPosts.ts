@@ -3,6 +3,7 @@ import { DATE, INTEGER, Model, STRING } from 'sequelize';
 import db from '.';
 
 class BlogPosts extends Model {
+  declare id: number;
   declare title: string;
   declare content: string;
   declare userId: number;
