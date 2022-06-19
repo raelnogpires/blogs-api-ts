@@ -8,8 +8,8 @@ export type PostT = {
 }
 
 export type CreatePostT = {
+  userId: number,
   title: string,
-  categoryIds: Array<number>,
   content: string,
 }
 
