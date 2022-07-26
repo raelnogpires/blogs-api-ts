@@ -16,4 +16,9 @@ router
   check.checkCategories,
   (req, res, next) => controller.createPost(req, res, next));
 
+router
+  .get('/',
+  auth.validateToken,
+  (req, res) => controller.getAllPosts(req, res));
+
 export default router;
