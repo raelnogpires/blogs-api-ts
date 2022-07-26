@@ -28,4 +28,12 @@ export default class BlogPostController {
 
     return res.status(200).json(newPost);
   }
+
+  public async getAllPosts(
+    req: Request,
+    res: Response,
+  ): Promise<Response> {
+    const posts = await this._service.getAllPosts();
+    return res.status(200).json(posts);
+  }
 }
