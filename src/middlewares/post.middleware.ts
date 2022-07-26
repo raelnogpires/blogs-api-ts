@@ -4,12 +4,12 @@ import { BadGatewayError } from 'restify-errors';
 
 import { CategoryT } from '../@types/types/category.type';
 
-import Categories from '../database/model/Categories';
+import CategoryRepository from '../modules/repository/category.repository';
 
 export default class PostMiddleware {
-  private _model;
+  private _rep;
 
-  constructor() { this._model = Categories }
+  constructor() { this._rep = new CategoryRepository() }
 
   private static joi = Joi.object({
     title: Joi.string().required(),
@@ -36,12 +36,10 @@ export default class PostMiddleware {
     next: NextFunction,
   ): Promise<void> {
     const { categoryIds } = req.body;
-    const allCategories = await this._model.findAll();
+    const allCategories = await this._rep.getAllCategories();
 
     categoryIds.forEach((c: CategoryT) => {
-      const exist = allCategories.find((i) => {
-        i.id === c.id
-      });
+      const exist = allCategories.find((i) => i.id === c.id);
 
       if (!exist) {
         const err = new BadGatewayError('"categoryIds" not found');
