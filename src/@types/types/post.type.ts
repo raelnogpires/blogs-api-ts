@@ -11,6 +11,7 @@ export type CreatePostT = {
   userId: number,
   title: string,
   content: string,
+  categoryIds: number[],
 }
 
 export type NewPostReturnT = {

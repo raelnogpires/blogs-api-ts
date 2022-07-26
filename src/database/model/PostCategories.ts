@@ -17,9 +17,9 @@ PostCategories.init(
     },
   },
   {
-    underscored: true,
+    underscored: false,
     sequelize: db,
-    tableName: 'PostCategories',
+    tableName: 'PostsCategories',
     timestamps: false,
   },
 );

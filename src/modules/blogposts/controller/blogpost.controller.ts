@@ -15,7 +15,7 @@ export default class BlogPostController {
     res: Response,
     next: NextFunction,
   ): Promise<Response | void> {
-    const { title, content } = req.body;
+    const { title, content, categoryIds } = req.body;
 
     const { userId } = req.headers;
     if(!userId) {
@@ -23,7 +23,7 @@ export default class BlogPostController {
       return next(err);
     }
 
-    const postData = { userId: parseInt(userId[0]), title, content }
+    const postData = { userId: parseInt(userId[0]), title, content, categoryIds }
     const newPost = await this._service.createPost(postData);
 
     return res.status(200).json(newPost);
