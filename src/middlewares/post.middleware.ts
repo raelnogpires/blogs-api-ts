@@ -7,10 +7,6 @@ import { CategoryT } from '../@types/types/category.type';
 import CategoryRepository from '../modules/repository/category.repository';
 
 export default class PostMiddleware {
-  private _rep;
-
-  constructor() { this._rep = new CategoryRepository() }
-
   private static joi = Joi.object({
     title: Joi.string().required(),
     content: Joi.string().required(),
@@ -36,10 +32,11 @@ export default class PostMiddleware {
     next: NextFunction,
   ): Promise<void> {
     const { categoryIds } = req.body;
-    const allCategories = await this._rep.getAllCategories();
+    const { getAllCategories } = new CategoryRepository();
+    const allCategories = await getAllCategories();
 
-    categoryIds.forEach((c: CategoryT) => {
-      const exist = allCategories.find((i) => i.id === c.id);
+    categoryIds.forEach((c: number) => {
+      const exist = allCategories.find((i) => i.id === c);
 
       if (!exist) {
         const err = new BadGatewayError('"categoryIds" not found');

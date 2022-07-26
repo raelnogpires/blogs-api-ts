@@ -17,7 +17,7 @@ export default class CategoryRepository implements ICategoryRepository {
     return newCategory;
   }
 
-  public async getAllCategories(): Promise<CategoryT[]> {
+  public getAllCategories = async (): Promise<CategoryT[]> => {
     const categories = await this._model.findAll();
     return categories;
   }

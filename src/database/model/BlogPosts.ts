@@ -20,7 +20,7 @@ BlogPosts.init(
     updated: DATE,
   },
   {
-    underscored: true,
+    underscored: false,
     sequelize: db,
     tableName: 'BlogPosts',
     timestamps: false,
