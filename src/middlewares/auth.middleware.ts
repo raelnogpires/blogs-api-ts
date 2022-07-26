@@ -5,9 +5,11 @@ import { verifyToken } from '../auth/index';
 import Users from '../database/model/Users';
 
 export default class AuthMiddleware {
-  private _model;
+  private _model: typeof Users;
 
-  constructor() { this._model = Users }
+  constructor() {
+    this._model = Users;
+  }
 
   public async validateToken(req: Request, _res: Response, next: NextFunction): Promise<void> {
     const { authorization } = req.headers;
